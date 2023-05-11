@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('home', ['goods' => \App\Models\Good::all()]);
+    return view('home', ['goods' => \App\Models\Good::query()->paginate(6)]);
 });
 
 Auth::routes();
