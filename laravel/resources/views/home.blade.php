@@ -7,7 +7,7 @@
                 <div class="content-head__title-wrap__title bcg-title">
                     <? /** @var \App\Models\Category $currentCategory */ ?>
                     @if(isset($currentCategory))
-                        Товары из категории {{ $currentCategory }}
+                        Товары из категории {{ $currentCategory->title }}
                     @else
                         Последние товары
                     @endif
@@ -35,11 +35,7 @@
             </div>
         </div>
         <div class="content-footer__container">
-            <ul class="page-nav">
-                <li class="page-nav__item"><a href="#" class="page-nav__item__link"><i class="fa fa-angle-double-left"></i></a></li>
-                <li class="page-nav__item"><a href="#" class="page-nav__item__link">1</a></li>
-                <li class="page-nav__item"><a href="#" class="page-nav__item__link"><i class="fa fa-angle-double-right"></i></a></li>
-            </ul>
+            {{ $goods->links() }}
         </div>
     </div>
 @endsection

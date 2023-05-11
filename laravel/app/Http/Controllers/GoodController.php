@@ -17,12 +17,14 @@ class GoodController extends Controller
 
     public function category(int $id)
     {
-        /** @var Category $category */
-        $category = Category::with('goods')->find($id);
+        /** @var Good $goods */
+        $goods = Good::query()
+            ->where('category_id', '=', $id)
+            ->paginate(6);
         return view('home', [
-            'goods' => $category->goods,
+            'goods' => $goods,
             'category_id' => $id,
-            'currentCategory' => $category->title
+            'currentCategory' => Category::find($id)
         ]);
     }
 }

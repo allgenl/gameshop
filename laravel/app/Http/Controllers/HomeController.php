@@ -26,6 +26,8 @@ class HomeController extends Controller
      */
     public function index(): Renderable
     {
-        return view('home', ['goods' => Good::query()->get()]);
+        return view('home', [
+            'goods' => Good::query()->orderBy("id", "DESC")->paginate(6)
+        ]);
     }
 }
