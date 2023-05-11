@@ -1,5 +1,5 @@
 <header class="main-header">
-    <div class="logotype-container"><a href="#" class="logotype-link"><img src="img/logo.png" alt="Логотип"></a></div>
+    <div class="logotype-container"><a href="{{ route('home') }}" class="logotype-link"><img src="/img/logo.png" alt="Логотип"></a></div>
     <nav class="main-navigation">
         <ul class="nav-list">
             <li class="nav-list__item"><a href="#" class="nav-list__item__link">Главная</a></li>
@@ -19,7 +19,20 @@
             </div>
         </div>
         <div class="authorization-block">
-            <a href="{{ route('register') }}" class="authorization-block__link">Регистрация</a>
-            <a href="{{ route('login') }}" class="authorization-block__link">Войти</a></div>
+            @if(Auth::user())
+                {{ Auth::user()->name }}
+                <a href="{{ route('logout') }}" class="authorization-block__link"
+                   onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                    Выйти</a>
+
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            @else
+                <a href="{{ route('register') }}" class="authorization-block__link">Регистрация</a>
+                <a href="{{ route('login') }}" class="authorization-block__link">Войти</a>
+            @endif
+        </div>
     </div>
 </header>
