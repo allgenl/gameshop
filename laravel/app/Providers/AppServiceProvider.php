@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use App\Models\Category;
+use App\Models\Order;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\View\View;
@@ -26,9 +28,26 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        $boxSize = 0;
+
         Schema::defaultStringLength(191);
+
         \Illuminate\Support\Facades\View::composer('layouts.sidebar.categories', function (View $view) {
-            return $view->with('categories', Category::all());
+            $id = Auth::id();
+            return $view
+                ->with('categories', Category::all());
+        });
+
+        \Illuminate\Support\Facades\View::composer('*', function (View $view) use ($boxSize) {
+            $id = Auth::id();
+            if ($id) {
+                $currentOrder = Order::getCurrentOrder($id);
+                if ($currentOrder) {
+                    $boxSize = sizeof($currentOrder->goods);
+                }
+            }
+            return $view
+                ->with('boxSize', $boxSize);
         });
     }
 }

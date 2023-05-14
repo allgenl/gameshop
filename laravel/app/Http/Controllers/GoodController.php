@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class GoodController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function good(int $id)
     {
         /** @var Good $good */
