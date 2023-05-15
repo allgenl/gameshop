@@ -37,6 +37,7 @@ class Order extends Model
         return self::$currentOrder;
     }
 
+
     public function getSum(): int
     {
         $sum = 0;

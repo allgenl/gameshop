@@ -14,6 +14,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property-read $title
  * @property-read $description
  * @property-read $price
+ * @property-read $created_at
  * @property-read Category $category
  */
 class Good extends Model

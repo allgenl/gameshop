@@ -25,3 +25,8 @@ Route::get('/category/{id}', [App\Http\Controllers\GoodController::class, 'categ
 Route::get('/order/buy/{id}', [App\Http\Controllers\OrderController::class, 'buy'])->name('buy');
 Route::get('/order/current', [App\Http\Controllers\OrderController::class, 'current'])->name('order.current');
 Route::get('/order/process', [App\Http\Controllers\OrderController::class, 'process'])->name('order.process');
+
+Route::group(['middleware' => \App\Http\Middleware\AdminMiddleware::class], function () {
+    Route::get('/admin/categories', [App\Http\Controllers\AdminController::class, 'categories'])->name('admin.categories');
+    Route::get('/admin/orders', [App\Http\Controllers\AdminController::class, 'orders'])->name('admin.orders');
+});
