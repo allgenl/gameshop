@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\OrderCompleted;
 use App\Models\Good;
 use App\Models\Order;
 use App\Models\OrderGood;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
@@ -53,8 +56,12 @@ class OrderController extends Controller
         if (!$currentOrder) {
             return redirect()->route('home');
         }
+        Mail::to(User::query()->find(1))->send(new OrderCompleted($currentOrder, Auth::user()));
+
         /** @var Order $currentOrder */
         $currentOrder->saveProcessed();
+
+        return view('order.completed');
 
     }
 }
