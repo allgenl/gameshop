@@ -6,17 +6,11 @@
             <div class="content-head__title-wrap">
                 <div class="content-head__title-wrap__title bcg-title">О магазине</div>
             </div>
-            <div class="content-head__search-block">
-                <div class="search-container">
-                    <form class="search-container__form">
-                        <input type="text" class="search-container__form__input">
-                        <button class="search-container__form__btn">search</button>
-                    </form>
-                </div>
-            </div>
+            @include('layouts.search.goods')
         </div>
         <div class="content-main__container">
-            <div class="news-block content-text"><img src="/img/cover/game-3.jpg" alt="Image" class="alignleft img-news">
+            <div class="news-block content-text"><img src="/img/cover/game-3.jpg" alt="Image"
+                                                      class="alignleft img-news">
                 <p>
                     Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                     eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim

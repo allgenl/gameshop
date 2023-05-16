@@ -32,4 +32,14 @@ class GoodController extends Controller
             'currentCategory' => Category::find($id)
         ]);
     }
+    public function goodsSearch(Request $request)
+    {
+        $search = $request->input('search');
+        /** @var Good $goods */
+        $goods = Good::query()
+            ->where('title', 'like', '%' . $search . '%')
+            ->orWhere('description', 'like', '%' . $search . '%')
+            ->get();
+        return view('search', ['goods' => $goods]);
+    }
 }

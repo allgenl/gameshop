@@ -8,14 +8,6 @@
                     Мои заказы
                 </div>
             </div>
-            <div class="content-head__search-block">
-                <div class="search-container">
-                    <form class="search-container__form">
-                        <input type="text" class="search-container__form__input">
-                        <button class="search-container__form__btn">search</button>
-                    </form>
-                </div>
-            </div>
         </div>
     </div>
     <div class="content-main__container">
@@ -28,7 +20,7 @@
                         <div class="cart-product-list__item">
                             <div class="cart-product__item__product-photo"><img src="/img/cover/game-{{ $good->getImageId() }}.jpg" class="cart-product__item__product-photo__image"></div>
                             <div class="cart-product__item__product-name">
-                                <div class="cart-product__item__product-name__content"><a href="#">{{ $good->title }}</a></div>
+                                <div class="cart-product__item__product-name__content"><a href="{{ route('good', $good->id) }}">{{ $good->title }}</a></div>
                             </div>
                             <div class="cart-product__item__cart-date">
                                 <div class="cart-product__item__cart-date__content">{{ $good->created_at->format('d.m.Y') }}</div>

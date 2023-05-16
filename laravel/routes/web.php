@@ -21,12 +21,14 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/good/{id}', [App\Http\Controllers\GoodController::class, 'good'])->name('good');
+Route::post('/goods/search', [App\Http\Controllers\GoodController::class, 'goodsSearch'])->name('goods.search');
 Route::get('/category/{id}', [App\Http\Controllers\GoodController::class, 'category'])->name('category');
 Route::get('/order/buy/{id}', [App\Http\Controllers\OrderController::class, 'buy'])->name('buy');
 Route::get('/order/current', [App\Http\Controllers\OrderController::class, 'current'])->name('order.current');
 Route::get('/order/process', [App\Http\Controllers\OrderController::class, 'process'])->name('order.process');
 Route::get('/order/completed', [App\Http\Controllers\OrderController::class, 'myOrders'])->name('order.completed');
 Route::get('/news', [App\Http\Controllers\HomeController::class, 'news'])->name('news');
+Route::post('/news/search', [App\Http\Controllers\HomeController::class, 'newsSearch'])->name('newsSearch');
 Route::get('/news/{id}', [App\Http\Controllers\HomeController::class, 'oneNews'])->name('oneNews');
 Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
 

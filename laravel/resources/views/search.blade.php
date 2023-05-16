@@ -33,8 +33,5 @@
                 @endforeach
             </div>
         </div>
-        <div class="content-footer__container">
-            {{ $goods->links() }}
-        </div>
     </div>
 @endsection

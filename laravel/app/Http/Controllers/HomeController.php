@@ -50,6 +50,16 @@ class HomeController extends Controller
             ->get() ?? [];
         return view('news', ['news' => $news]);
     }
+    public function newsSearch(Request $request): Renderable
+    {
+        $search = $request->input('search');
+        /** @var News $news */
+        $news = News::query()
+            ->where('title', 'like', '%' . $search . '%')
+            ->orWhere('description', 'like', '%' . $search . '%')
+            ->get();
+        return view('news', ['news' => $news]);
+    }
 
     public function about(): Renderable
     {
