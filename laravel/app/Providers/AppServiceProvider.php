@@ -4,6 +4,7 @@ namespace App\Providers;
 
 use App\Models\Category;
 use App\Models\Good;
+use App\Models\News;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\ServiceProvider;
@@ -58,6 +59,16 @@ class AppServiceProvider extends ServiceProvider
                 ->first();
             return $view
                 ->with('good', $good);
+        });
+
+        \Illuminate\Support\Facades\View::composer('layouts.sidebar.news', function (View $view) {
+            $news = News::query()
+                ->orderBy('created_at', 'DESC')
+                ->limit(3)
+                ->get();
+            return $view
+                ->with('news', $news
+                );
         });
     }
 }
