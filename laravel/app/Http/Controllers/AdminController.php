@@ -41,9 +41,11 @@ class AdminController extends Controller
     public function editEmail(Request $request)
     {
         $email = $request->input('email');
+        $orderNotice = boolval($request->input('order_notice'));
+
         $affected = DB::table('users')
             ->where('id', '=', Auth::id())
-            ->update(['email' => $email]);
+            ->update(['email' => $email, 'order_notice' => $orderNotice]);
         return redirect()->route('home');
     }
 }
