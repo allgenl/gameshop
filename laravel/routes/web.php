@@ -21,6 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::get('/good/{id}', [App\Http\Controllers\GoodController::class, 'good'])->name('good');
+Route::get('/good/delete/{id}', [App\Http\Controllers\GoodController::class, 'goodDelete'])->name('goodDelete');
 Route::post('/goods/search', [App\Http\Controllers\GoodController::class, 'goodsSearch'])->name('goods.search');
 Route::get('/category/{id}', [App\Http\Controllers\GoodController::class, 'category'])->name('category');
 Route::get('/order/remove/{id}', [App\Http\Controllers\OrderController::class, 'goodRemove'])->name('goodRemove');

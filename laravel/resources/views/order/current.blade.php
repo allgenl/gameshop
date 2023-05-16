@@ -28,7 +28,7 @@
                     </div>
                     <div class="cart-product__item__product-price"><span class="product-price__value">{{ $good->price }} рублей</span></div>
                     <div class="cart-product__item__cart-date">
-                        <a href="{{ route('goodRemove', ['id' => $good->id]) }}">Убрать товар</a>
+                        <a href="{{ route('goodRemove', $good->id) }}">Убрать товар</a>
                     </div>
                 </div>
                 @empty

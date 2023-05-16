@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Good;
+use App\Models\Order;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class GoodController extends Controller
 {
@@ -16,10 +19,21 @@ class GoodController extends Controller
     public function good(int $id)
     {
         /** @var Good $good */
-        $good = Good::query()->with('category')->find($id);
+        $good = Good::query()
+            ->with('category')
+            ->find($id);
         return view('good', ['good' => $good]);
     }
 
+    public function goodDelete(int $id)
+    {
+        $affected = DB::table('goods')
+            ->where('id', '=', $id)
+            ->limit(1)
+            ->update(['visibility' => '0']);
+
+        return redirect()->route('home', ['goods' => Good::query()->get()]);
+    }
 
 
     public function category(int $id)
