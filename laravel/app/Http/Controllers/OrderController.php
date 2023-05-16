@@ -60,7 +60,16 @@ class OrderController extends Controller
         if (!$currentOrder) {
             return redirect()->route('home');
         }
-        Mail::to(User::query()->where('is_admin', '=', '1')->first())->send(new OrderCompleted($currentOrder, Auth::user()));
+        $users = User::query()
+            ->where('is_admin', '=', '1')
+            ->where('order_notice', '=', '1')
+            ->get();
+
+        if ($users) {
+            foreach ($users as $user) {
+                Mail::to($user)->send(new OrderCompleted($currentOrder, Auth::user()));
+            }
+        }
 
 
         /** @var Order $currentOrder */
