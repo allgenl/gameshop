@@ -78,4 +78,18 @@ class OrderController extends Controller
         return view('order.completed');
 
     }
+
+    public function myOrders()
+    {
+        // Get all user orders
+        $orders = Order::query()
+            ->where('user_id', '=', Auth::id())
+            ->where('state', '=', Order::STATE_PROCESSED)
+            ->orderBy('created_at', 'DESC')
+            ->get();
+
+        return view('order.my_orders', [
+            'orders' => $orders ?? [],
+        ]);
+    }
 }
