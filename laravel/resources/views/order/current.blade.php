@@ -19,7 +19,7 @@
                 <? /** @var \App\Models\Good $good */ ?>
                 @forelse($goods as $good)
                 <div class="cart-product-list__item">
-                    <div class="cart-product__item__product-photo"><img src="/img/cover/game-{{ $good->getImageId() }}.jpg" class="cart-product__item__product-photo__image"></div>
+                    <div class="cart-product__item__product-photo"><a href="{{ route('good', $good->id) }}"><img src="/img/cover/game-{{ $good->getImageId() }}.jpg" class="cart-product__item__product-photo__image"></a></div>
                     <div class="cart-product__item__product-name">
                         <div class="cart-product__item__product-name__content"><a href="{{ route('good', $good->id) }}">{{ $good->title }}</a></div>
                     </div>
