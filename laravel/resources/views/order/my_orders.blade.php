@@ -15,6 +15,10 @@
             <? /** @var \App\Models\Order $order */ ?>
             @if(is_array($orders) || is_object($orders))
                 @forelse($orders as $order)
+                    <div class="content-head__title-wrap__title">
+                            Заказ # {{$order->id}}
+                    </div>
+                    <br>
                     <? /** @var \App\Models\Good $good */ ?>
                     @forelse($order->goods as $good)
                         <div class="cart-product-list__item">
