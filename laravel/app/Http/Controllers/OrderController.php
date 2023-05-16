@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mail\OrderCompleted;
+use App\Models\Admin;
 use App\Models\Good;
 use App\Models\Order;
 use App\Models\OrderGood;
@@ -13,10 +14,13 @@ use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
+
     public function __construct()
     {
         $this->middleware('auth');
     }
+
+
 
     public function buy(int $id)
     {
@@ -56,7 +60,8 @@ class OrderController extends Controller
         if (!$currentOrder) {
             return redirect()->route('home');
         }
-        Mail::to(User::query()->find(1))->send(new OrderCompleted($currentOrder, Auth::user()));
+        Mail::to(User::query()->where('is_admin', '=', '1')->first())->send(new OrderCompleted($currentOrder, Auth::user()));
+
 
         /** @var Order $currentOrder */
         $currentOrder->saveProcessed();

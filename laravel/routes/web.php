@@ -29,4 +29,6 @@ Route::get('/order/process', [App\Http\Controllers\OrderController::class, 'proc
 Route::group(['middleware' => \App\Http\Middleware\AdminMiddleware::class], function () {
     Route::get('/admin/categories', [App\Http\Controllers\AdminController::class, 'categories'])->name('admin.categories');
     Route::get('/admin/orders', [App\Http\Controllers\AdminController::class, 'orders'])->name('admin.orders');
+    Route::get('/admin/email', [App\Http\Controllers\AdminController::class, 'email'])->name('admin.email');
+    Route::post('/admin/email/edit', [App\Http\Controllers\AdminController::class, 'editEmail'])->name('email.edit');
 });
