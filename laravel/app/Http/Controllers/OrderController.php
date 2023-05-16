@@ -10,6 +10,7 @@ use App\Models\OrderGood;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
@@ -51,6 +52,20 @@ class OrderController extends Controller
             'goods' => $order->goods ?? [],
             'sum' => $order ? $order->getSum() : 0
         ]);
+    }
+
+    public function goodRemove(int $id)
+    {
+        /** @var Order $order */
+        $order = Order::getCurrentOrder(Auth::id());
+
+        $affected = DB::table('order_goods')
+            ->where('order_id', '=', $order->id)
+            ->where('good_id', '=', $id)
+            ->limit(1)
+            ->delete();
+
+        return $this->current();
     }
 
     public function process()

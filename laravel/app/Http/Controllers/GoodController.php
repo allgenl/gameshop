@@ -20,6 +20,8 @@ class GoodController extends Controller
         return view('good', ['good' => $good]);
     }
 
+
+
     public function category(int $id)
     {
         /** @var Good $goods */

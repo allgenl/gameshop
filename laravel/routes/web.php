@@ -23,6 +23,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/good/{id}', [App\Http\Controllers\GoodController::class, 'good'])->name('good');
 Route::post('/goods/search', [App\Http\Controllers\GoodController::class, 'goodsSearch'])->name('goods.search');
 Route::get('/category/{id}', [App\Http\Controllers\GoodController::class, 'category'])->name('category');
+Route::get('/order/remove/{id}', [App\Http\Controllers\OrderController::class, 'goodRemove'])->name('goodRemove');
 Route::get('/order/buy/{id}', [App\Http\Controllers\OrderController::class, 'buy'])->name('buy');
 Route::get('/order/current', [App\Http\Controllers\OrderController::class, 'current'])->name('order.current');
 Route::get('/order/process', [App\Http\Controllers\OrderController::class, 'process'])->name('order.process');
