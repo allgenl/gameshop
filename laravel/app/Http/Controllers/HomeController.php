@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Good;
+use App\Models\News;
 use App\Models\Order;
 use Illuminate\Contracts\Support\Renderable;
 use Illuminate\Http\Request;
@@ -35,7 +36,19 @@ class HomeController extends Controller
 
     public function news(): Renderable
     {
-        return view('news');
+        $news = News::query()
+            ->orderBy('created_at', 'DESC')
+            ->limit(3)
+            ->get() ?? [];
+//        dd($news);
+        return view('news', ['news' => $news]);
+    }
+    public function oneNews(int $id): Renderable
+    {
+        $news = News::query()
+            ->where('id', '=', $id)
+            ->get() ?? [];
+        return view('news', ['news' => $news]);
     }
 
     public function about(): Renderable

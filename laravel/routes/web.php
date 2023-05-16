@@ -27,6 +27,7 @@ Route::get('/order/current', [App\Http\Controllers\OrderController::class, 'curr
 Route::get('/order/process', [App\Http\Controllers\OrderController::class, 'process'])->name('order.process');
 Route::get('/order/completed', [App\Http\Controllers\OrderController::class, 'myOrders'])->name('order.completed');
 Route::get('/news', [App\Http\Controllers\HomeController::class, 'news'])->name('news');
+Route::get('/news/{id}', [App\Http\Controllers\HomeController::class, 'oneNews'])->name('oneNews');
 Route::get('/about', [App\Http\Controllers\HomeController::class, 'about'])->name('about');
 
 Route::group(['middleware' => \App\Http\Middleware\AdminMiddleware::class], function () {

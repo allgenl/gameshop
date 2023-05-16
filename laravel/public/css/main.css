@@ -585,7 +585,9 @@ img {
 /* Image style */
 .img-news {
   max-width: 300px; }
-
+.news-block {
+    min-height: 300px;
+}
 .content-text__title {
   font-size: 1.857rem;
   font-family: "PT_Sans", sans-serif;
@@ -1137,3 +1139,10 @@ a img.aligncenter {
   width: 130%;
   background-color: #d0e26c;
   z-index: -5; }
+
+a.content-head__title-wrap__title:active, /* активная/посещенная ссылка */
+a.content-head__title-wrap__title:hover,  /* при наведении */
+a.content-head__title-wrap__title {
+    text-decoration: none;
+    color: #666;
+}
