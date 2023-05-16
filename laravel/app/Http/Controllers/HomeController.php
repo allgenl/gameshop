@@ -32,4 +32,14 @@ class HomeController extends Controller
             'goods' => Good::query()->orderBy("id", "DESC")->paginate(6)
         ]);
     }
+
+    public function news(): Renderable
+    {
+        return view('news');
+    }
+
+    public function about(): Renderable
+    {
+        return view('about');
+    }
 }
