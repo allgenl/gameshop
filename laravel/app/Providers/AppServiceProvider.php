@@ -50,5 +50,14 @@ class AppServiceProvider extends ServiceProvider
             return $view
                 ->with('boxSize', $boxSize);
         });
+
+        \Illuminate\Support\Facades\View::composer('layouts.footer', function (View $view) {
+            $count = sizeof(Good::query()->get());
+            $good = Good::query()
+                ->where('id', '=', mt_rand(1, $count))
+                ->first();
+            return $view
+                ->with('good', $good);
+        });
     }
 }

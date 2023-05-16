@@ -21,14 +21,15 @@
                 <div class="product-container__image-wrap"><img src="/img/cover/game-{{ $good->getImageId() }}.jpg" class="image-wrap__image-product" alt="photo"></div>
                 <div class="product-container__content-text">
                     <div class="product-container__content-text__title">{{ $good->title }}</div>
+                    <div class="product-container__content-text__description">
+                        {{ $good->description }}
+                    </div>
+                    <br>
                     <div class="product-container__content-text__price">
                         <div class="product-container__content-text__price__value">
                             Цена: <b>{{ $good->price }}</b>
                             руб
-                        </div><a href="#" class="btn btn-blue">Купить</a>
-                    </div>
-                    <div class="product-container__content-text__description">
-                        {{ $good->description }}
+                        </div><a href="{{ route('buy', $good->id) }}" class="btn btn-blue">Купить</a>
                     </div>
                 </div>
             </div>
